@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>opentelemetry.exporter.cloud_trace &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home" alt="Documentation Home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../instrumentation/instrumentation.html">OpenTelemetry Python Instrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/aiohttp_client/aiohttp_client.html">OpenTelemetry aiohttp client Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/asgi/asgi.html">opentelemetry.ext.asgi package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/asyncpg/asyncpg.html">opentelemetry.ext.asyncpg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/boto/boto.html">OpenTelemetry Boto Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/botocore/botocore.html">OpenTelemetry Botocore Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/celery/celery.html">OpenTelemetry Celery Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/cloud_monitoring/cloud_monitoring.html">OpenTelemetry Cloud Monitoring Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/cloud_trace/cloud_trace.html">OpenTelemetry Cloud Trace Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/datadog/datadog.html">OpenTelemetry Datadog Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/django/django.html">OpenTelemetry Django Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/jinja2/jinja2.html">OpenTelemetry Jinja2 Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/opencensusexporter/opencensusexporter.html">OpenCensus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/otlp/otlp.html">Opentelemetry OTLP Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymemcache/pymemcache.html">OpenTelemetry pymemcache Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pymysql/pymysql.html">OpenTelemetry PyMySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/pyramid/pyramid.html">OpenTelemetry Pyramid Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/redis/redis.html">OpenTelemetry Redis Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/requests/requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/sqlalchemy/sqlalchemy.html">OpenTelemetry SQLAlchemy Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/sqlite3/sqlite3.html">OpenTelemetry SQLite3 Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/starlette/starlette.html">OpenTelemetry Starlette Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/system_metrics/system_metrics.html">OpenTelemetry System Metrics Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/auto-instrumentation/README.html">Autoinstrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cloud_monitoring/README.html">Cloud Monitoring Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/cloud_trace_exporter/README.html">Cloud Trace Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/datadog_exporter/README.html">Datadog Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/django/README.html">OpenTelemetry Django Instrumentation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opencensus-exporter-metrics/README.html">OpenTelemetry Collector Metrics OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opencensus-exporter-tracer/README.html">OpenTelemetry Collector Tracer OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/opentracing/README.html">OpenTracing Shim Example</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>opentelemetry.exporter.cloud_trace</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for opentelemetry.exporter.cloud_trace</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="sd">&quot;&quot;&quot;Cloud Trace Span Exporter for OpenTelemetry. Uses Cloud Trace Client&#39;s REST</span>
+<span class="sd">API to export traces and spans for viewing in Cloud Trace.</span>
+
+<span class="sd">Usage</span>
+<span class="sd">-----</span>
+
+<span class="sd">.. code-block:: python</span>
+
+<span class="sd">    from opentelemetry import trace</span>
+<span class="sd">    from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter</span>
+<span class="sd">    from opentelemetry.sdk.trace import TracerProvider</span>
+<span class="sd">    from opentelemetry.sdk.trace.export import SimpleExportSpanProcessor</span>
+
+<span class="sd">    trace.set_tracer_provider(TracerProvider())</span>
+
+<span class="sd">    cloud_trace_exporter = CloudTraceSpanExporter()</span>
+<span class="sd">    trace.get_tracer_provider().add_span_processor(</span>
+<span class="sd">        SimpleExportSpanProcessor(cloud_trace_exporter)</span>
+<span class="sd">    )</span>
+<span class="sd">    tracer = trace.get_tracer(__name__)</span>
+<span class="sd">    with tracer.start_as_current_span(&quot;foo&quot;):</span>
+<span class="sd">        print(&quot;Hello world!&quot;)</span>
+
+
+<span class="sd">API</span>
+<span class="sd">---</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">google.auth</span>
+<span class="kn">import</span> <span class="nn">pkg_resources</span>
+<span class="kn">from</span> <span class="nn">google.cloud.trace_v2</span> <span class="kn">import</span> <span class="n">TraceServiceClient</span>
+<span class="kn">from</span> <span class="nn">google.cloud.trace_v2.proto.trace_pb2</span> <span class="kn">import</span> <span class="n">AttributeValue</span>
+<span class="kn">from</span> <span class="nn">google.cloud.trace_v2.proto.trace_pb2</span> <span class="kn">import</span> <span class="n">Span</span> <span class="k">as</span> <span class="n">ProtoSpan</span>
+<span class="kn">from</span> <span class="nn">google.cloud.trace_v2.proto.trace_pb2</span> <span class="kn">import</span> <span class="n">TruncatableString</span>
+<span class="kn">from</span> <span class="nn">google.rpc.status_pb2</span> <span class="kn">import</span> <span class="n">Status</span>
+
+<span class="kn">import</span> <span class="nn">opentelemetry.trace</span> <span class="k">as</span> <span class="nn">trace_api</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.exporter.cloud_trace.version</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">__version__</span> <span class="k">as</span> <span class="n">cloud_trace_version</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">Event</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">Span</span><span class="p">,</span> <span class="n">SpanExporter</span><span class="p">,</span> <span class="n">SpanExportResult</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.util</span> <span class="kn">import</span> <span class="n">BoundedDict</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.trace.span</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_hexadecimal_span_id</span><span class="p">,</span>
+    <span class="n">get_hexadecimal_trace_id</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.util</span> <span class="kn">import</span> <span class="n">types</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">MAX_NUM_LINKS</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">MAX_NUM_EVENTS</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">MAX_EVENT_ATTRS</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">MAX_LINK_ATTRS</span> <span class="o">=</span> <span class="mi">32</span>
+<span class="n">MAX_SPAN_ATTRS</span> <span class="o">=</span> <span class="mi">32</span>
+
+
+<div class="viewcode-block" id="CloudTraceSpanExporter"><a class="viewcode-back" href="../../../ext/cloud_trace/cloud_trace.html#opentelemetry.exporter.cloud_trace.CloudTraceSpanExporter">[docs]</a><span class="k">class</span> <span class="nc">CloudTraceSpanExporter</span><span class="p">(</span><span class="n">SpanExporter</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Cloud Trace span exporter for OpenTelemetry.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        project_id: ID of the cloud project that will receive the traces.</span>
+<span class="sd">        client: Cloud Trace client. If not given, will be taken from gcloud</span>
+<span class="sd">            default credentials</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">project_id</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">client</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">client</span> <span class="o">=</span> <span class="n">client</span> <span class="ow">or</span> <span class="n">TraceServiceClient</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">project_id</span><span class="p">:</span>
+            <span class="n">_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">google</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">default</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span> <span class="o">=</span> <span class="n">project_id</span>
+
+<div class="viewcode-block" id="CloudTraceSpanExporter.export"><a class="viewcode-back" href="../../../ext/cloud_trace/cloud_trace.html#opentelemetry.exporter.cloud_trace.CloudTraceSpanExporter.export">[docs]</a>    <span class="k">def</span> <span class="nf">export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">spans</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">SpanExportResult</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Export the spans to Cloud Trace.</span>
+
+<span class="sd">        See: https://cloud.google.com/trace/docs/reference/v2/rest/v2/projects.traces/batchWrite</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spans: Tuple of spans to export</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cloud_trace_spans</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_translate_to_cloud_trace</span><span class="p">(</span><span class="n">spans</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cloud_trace_spans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">create_span</span><span class="p">(</span><span class="o">**</span><span class="n">span</span><span class="p">))</span>
+            <span class="c1"># pylint: disable=broad-except</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error when creating span </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">span</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">ex</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">batch_write_spans</span><span class="p">(</span>
+                <span class="s2">&quot;projects/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">project_id</span><span class="p">),</span> <span class="n">cloud_trace_spans</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="c1"># pylint: disable=broad-except</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Error while writing to Cloud Trace&quot;</span><span class="p">,</span> <span class="n">exc_info</span><span class="o">=</span><span class="n">ex</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">SpanExportResult</span><span class="o">.</span><span class="n">FAILURE</span>
+
+        <span class="k">return</span> <span class="n">SpanExportResult</span><span class="o">.</span><span class="n">SUCCESS</span></div>
+
+    <span class="k">def</span> <span class="nf">_translate_to_cloud_trace</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">spans</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Span</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
+        <span class="sd">&quot;&quot;&quot;Translate the spans to Cloud Trace format.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            spans: Tuple of spans to convert</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">cloud_trace_spans</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">span</span> <span class="ow">in</span> <span class="n">spans</span><span class="p">:</span>
+            <span class="n">ctx</span> <span class="o">=</span> <span class="n">span</span><span class="o">.</span><span class="n">get_context</span><span class="p">()</span>
+            <span class="n">trace_id</span> <span class="o">=</span> <span class="n">get_hexadecimal_trace_id</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">trace_id</span><span class="p">)</span>
+            <span class="n">span_id</span> <span class="o">=</span> <span class="n">get_hexadecimal_span_id</span><span class="p">(</span><span class="n">ctx</span><span class="o">.</span><span class="n">span_id</span><span class="p">)</span>
+            <span class="n">span_name</span> <span class="o">=</span> <span class="s2">&quot;projects/</span><span class="si">{}</span><span class="s2">/traces/</span><span class="si">{}</span><span class="s2">/spans/</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">project_id</span><span class="p">,</span> <span class="n">trace_id</span><span class="p">,</span> <span class="n">span_id</span>
+            <span class="p">)</span>
+
+            <span class="n">parent_id</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">span</span><span class="o">.</span><span class="n">parent</span><span class="p">:</span>
+                <span class="n">parent_id</span> <span class="o">=</span> <span class="n">get_hexadecimal_span_id</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">span_id</span><span class="p">)</span>
+
+            <span class="n">start_time</span> <span class="o">=</span> <span class="n">_get_time_from_ns</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">start_time</span><span class="p">)</span>
+            <span class="n">end_time</span> <span class="o">=</span> <span class="n">_get_time_from_ns</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">end_time</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_SPAN_ATTRS</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="s2">&quot;Span has more then </span><span class="si">%s</span><span class="s2"> attributes, some will be truncated&quot;</span><span class="p">,</span>
+                    <span class="n">MAX_SPAN_ATTRS</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="n">cloud_trace_spans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">span_name</span><span class="p">,</span>
+                    <span class="s2">&quot;span_id&quot;</span><span class="p">:</span> <span class="n">span_id</span><span class="p">,</span>
+                    <span class="s2">&quot;display_name&quot;</span><span class="p">:</span> <span class="n">_get_truncatable_str_object</span><span class="p">(</span>
+                        <span class="n">span</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">128</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;start_time&quot;</span><span class="p">:</span> <span class="n">start_time</span><span class="p">,</span>
+                    <span class="s2">&quot;end_time&quot;</span><span class="p">:</span> <span class="n">end_time</span><span class="p">,</span>
+                    <span class="s2">&quot;parent_span_id&quot;</span><span class="p">:</span> <span class="n">parent_id</span><span class="p">,</span>
+                    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="n">_extract_attributes</span><span class="p">(</span>
+                        <span class="n">span</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span> <span class="n">MAX_SPAN_ATTRS</span><span class="p">,</span> <span class="n">add_agent_attr</span><span class="o">=</span><span class="kc">True</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;links&quot;</span><span class="p">:</span> <span class="n">_extract_links</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">links</span><span class="p">),</span>
+                    <span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="n">_extract_status</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">status</span><span class="p">),</span>
+                    <span class="s2">&quot;time_events&quot;</span><span class="p">:</span> <span class="n">_extract_events</span><span class="p">(</span><span class="n">span</span><span class="o">.</span><span class="n">events</span><span class="p">),</span>
+                <span class="p">}</span>
+            <span class="p">)</span>
+            <span class="c1"># TODO: Leverage more of the Cloud Trace API, e.g.</span>
+            <span class="c1">#  same_process_as_parent_span and child_span_count</span>
+
+        <span class="k">return</span> <span class="n">cloud_trace_spans</span>
+
+<div class="viewcode-block" id="CloudTraceSpanExporter.shutdown"><a class="viewcode-back" href="../../../ext/cloud_trace/cloud_trace.html#opentelemetry.exporter.cloud_trace.CloudTraceSpanExporter.shutdown">[docs]</a>    <span class="k">def</span> <span class="nf">shutdown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_get_time_from_ns</span><span class="p">(</span><span class="n">nanoseconds</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Given epoch nanoseconds, split into epoch milliseconds and remaining</span>
+<span class="sd">    nanoseconds&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nanoseconds</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">seconds</span><span class="p">,</span> <span class="n">nanos</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">nanoseconds</span><span class="p">,</span> <span class="mf">1e9</span><span class="p">)</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;seconds&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">seconds</span><span class="p">),</span> <span class="s2">&quot;nanos&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">nanos</span><span class="p">)}</span>
+
+
+<span class="k">def</span> <span class="nf">_get_truncatable_str_object</span><span class="p">(</span><span class="n">str_to_convert</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Truncate the string if it exceeds the length limit and record the</span>
+<span class="sd">    truncated bytes count.&quot;&quot;&quot;</span>
+    <span class="n">truncated</span><span class="p">,</span> <span class="n">truncated_byte_count</span> <span class="o">=</span> <span class="n">_truncate_str</span><span class="p">(</span><span class="n">str_to_convert</span><span class="p">,</span> <span class="n">max_length</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">TruncatableString</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">truncated</span><span class="p">,</span> <span class="n">truncated_byte_count</span><span class="o">=</span><span class="n">truncated_byte_count</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_truncate_str</span><span class="p">(</span><span class="n">str_to_check</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Check the length of a string. If exceeds limit, then truncate it.&quot;&quot;&quot;</span>
+    <span class="n">encoded</span> <span class="o">=</span> <span class="n">str_to_check</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+    <span class="n">truncated_str</span> <span class="o">=</span> <span class="n">encoded</span><span class="p">[:</span><span class="n">limit</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;ignore&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">truncated_str</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">truncated_str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">))</span>
+
+
+<span class="k">def</span> <span class="nf">_extract_status</span><span class="p">(</span><span class="n">status</span><span class="p">:</span> <span class="n">trace_api</span><span class="o">.</span><span class="n">Status</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Status</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Convert a Status object to protobuf object.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">status</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">status_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;details&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;code&quot;</span><span class="p">:</span> <span class="n">status</span><span class="o">.</span><span class="n">canonical_code</span><span class="o">.</span><span class="n">value</span><span class="p">}</span>
+
+    <span class="k">if</span> <span class="n">status</span><span class="o">.</span><span class="n">description</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">status_dict</span><span class="p">[</span><span class="s2">&quot;message&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">status</span><span class="o">.</span><span class="n">description</span>
+
+    <span class="k">return</span> <span class="n">Status</span><span class="p">(</span><span class="o">**</span><span class="n">status_dict</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_extract_links</span><span class="p">(</span><span class="n">links</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">trace_api</span><span class="o">.</span><span class="n">Link</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ProtoSpan</span><span class="o">.</span><span class="n">Links</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Convert span.links&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">links</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">extracted_links</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dropped_links</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_NUM_LINKS</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;Exporting more then </span><span class="si">%s</span><span class="s2"> links, some will be truncated&quot;</span><span class="p">,</span>
+            <span class="n">MAX_NUM_LINKS</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">dropped_links</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">links</span><span class="p">)</span> <span class="o">-</span> <span class="n">MAX_NUM_LINKS</span>
+        <span class="n">links</span> <span class="o">=</span> <span class="n">links</span><span class="p">[:</span><span class="n">MAX_NUM_LINKS</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">links</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_LINK_ATTRS</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Link has more then </span><span class="si">%s</span><span class="s2"> attributes, some will be truncated&quot;</span><span class="p">,</span>
+                <span class="n">MAX_LINK_ATTRS</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">trace_id</span> <span class="o">=</span> <span class="n">get_hexadecimal_trace_id</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">trace_id</span><span class="p">)</span>
+        <span class="n">span_id</span> <span class="o">=</span> <span class="n">get_hexadecimal_span_id</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">context</span><span class="o">.</span><span class="n">span_id</span><span class="p">)</span>
+        <span class="n">extracted_links</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;trace_id&quot;</span><span class="p">:</span> <span class="n">trace_id</span><span class="p">,</span>
+                <span class="s2">&quot;span_id&quot;</span><span class="p">:</span> <span class="n">span_id</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;TYPE_UNSPECIFIED&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="n">_extract_attributes</span><span class="p">(</span>
+                    <span class="n">link</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span> <span class="n">MAX_LINK_ATTRS</span>
+                <span class="p">),</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ProtoSpan</span><span class="o">.</span><span class="n">Links</span><span class="p">(</span>
+        <span class="n">link</span><span class="o">=</span><span class="n">extracted_links</span><span class="p">,</span> <span class="n">dropped_links_count</span><span class="o">=</span><span class="n">dropped_links</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_extract_events</span><span class="p">(</span><span class="n">events</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Event</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">ProtoSpan</span><span class="o">.</span><span class="n">TimeEvents</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Convert span.events to dict.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">events</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">logs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dropped_annontations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_NUM_EVENTS</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;Exporting more then </span><span class="si">%s</span><span class="s2"> annotations, some will be truncated&quot;</span><span class="p">,</span>
+            <span class="n">MAX_NUM_EVENTS</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">dropped_annontations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="o">-</span> <span class="n">MAX_NUM_EVENTS</span>
+        <span class="n">events</span> <span class="o">=</span> <span class="n">events</span><span class="p">[:</span><span class="n">MAX_NUM_EVENTS</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">events</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">MAX_EVENT_ATTRS</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;Event </span><span class="si">%s</span><span class="s2"> has more then </span><span class="si">%s</span><span class="s2"> attributes, some will be truncated&quot;</span><span class="p">,</span>
+                <span class="n">event</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+                <span class="n">MAX_EVENT_ATTRS</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">_get_time_from_ns</span><span class="p">(</span><span class="n">event</span><span class="o">.</span><span class="n">timestamp</span><span class="p">),</span>
+                <span class="s2">&quot;annotation&quot;</span><span class="p">:</span> <span class="p">{</span>
+                    <span class="s2">&quot;description&quot;</span><span class="p">:</span> <span class="n">_get_truncatable_str_object</span><span class="p">(</span>
+                        <span class="n">event</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="mi">256</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;attributes&quot;</span><span class="p">:</span> <span class="n">_extract_attributes</span><span class="p">(</span>
+                        <span class="n">event</span><span class="o">.</span><span class="n">attributes</span><span class="p">,</span> <span class="n">MAX_EVENT_ATTRS</span>
+                    <span class="p">),</span>
+                <span class="p">},</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ProtoSpan</span><span class="o">.</span><span class="n">TimeEvents</span><span class="p">(</span>
+        <span class="n">time_event</span><span class="o">=</span><span class="n">logs</span><span class="p">,</span>
+        <span class="n">dropped_annotations_count</span><span class="o">=</span><span class="n">dropped_annontations</span><span class="p">,</span>
+        <span class="n">dropped_message_events_count</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_extract_attributes</span><span class="p">(</span>
+    <span class="n">attrs</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">Attributes</span><span class="p">,</span>
+    <span class="n">num_attrs_limit</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">add_agent_attr</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProtoSpan</span><span class="o">.</span><span class="n">Attributes</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Convert span.attributes to dict.&quot;&quot;&quot;</span>
+    <span class="n">attributes_dict</span> <span class="o">=</span> <span class="n">BoundedDict</span><span class="p">(</span><span class="n">num_attrs_limit</span><span class="p">)</span>
+    <span class="n">invalid_value_dropped_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">_truncate_str</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="mi">128</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">_format_attribute_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="n">attributes_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">invalid_value_dropped_count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">add_agent_attr</span><span class="p">:</span>
+        <span class="n">attributes_dict</span><span class="p">[</span><span class="s2">&quot;g.co/agent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">_format_attribute_value</span><span class="p">(</span>
+            <span class="s2">&quot;opentelemetry-python </span><span class="si">{}</span><span class="s2">; google-cloud-trace-exporter </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">pkg_resources</span><span class="o">.</span><span class="n">get_distribution</span><span class="p">(</span><span class="s2">&quot;opentelemetry-sdk&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">version</span><span class="p">,</span>
+                <span class="n">cloud_trace_version</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ProtoSpan</span><span class="o">.</span><span class="n">Attributes</span><span class="p">(</span>
+        <span class="n">attribute_map</span><span class="o">=</span><span class="n">attributes_dict</span><span class="p">,</span>
+        <span class="n">dropped_attributes_count</span><span class="o">=</span><span class="n">attributes_dict</span><span class="o">.</span><span class="n">dropped</span>
+        <span class="o">+</span> <span class="n">invalid_value_dropped_count</span><span class="p">,</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_format_attribute_value</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">types</span><span class="o">.</span><span class="n">AttributeValue</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AttributeValue</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+        <span class="n">value_type</span> <span class="o">=</span> <span class="s2">&quot;bool_value&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="n">value_type</span> <span class="o">=</span> <span class="s2">&quot;int_value&quot;</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">value_type</span> <span class="o">=</span> <span class="s2">&quot;string_value&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">_get_truncatable_str_object</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">float</span><span class="p">):</span>
+        <span class="n">value_type</span> <span class="o">=</span> <span class="s2">&quot;string_value&quot;</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">_get_truncatable_str_object</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:0.4f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="mi">256</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+            <span class="s2">&quot;ignoring attribute value </span><span class="si">%s</span><span class="s2"> of type </span><span class="si">%s</span><span class="s2">. Values type must be one &quot;</span>
+            <span class="s2">&quot;of bool, int, string or float&quot;</span><span class="p">,</span>
+            <span class="n">value</span><span class="p">,</span>
+            <span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">return</span> <span class="n">AttributeValue</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="n">value_type</span><span class="p">:</span> <span class="n">value</span><span class="p">})</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

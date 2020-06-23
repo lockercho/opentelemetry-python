@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cloud Trace Exporter Example &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Datadog Exporter Example" href="../datadog_exporter/README.html" />
+    <link rel="prev" title="Cloud Monitoring Exporter Example" href="../cloud_monitoring/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentation/instrumentation.html">OpenTelemetry Python Instrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/aiohttp_client/aiohttp_client.html">OpenTelemetry aiohttp client Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/asgi/asgi.html">opentelemetry.ext.asgi package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/asyncpg/asyncpg.html">opentelemetry.ext.asyncpg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/boto/boto.html">OpenTelemetry Boto Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/botocore/botocore.html">OpenTelemetry Botocore Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/celery/celery.html">OpenTelemetry Celery Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/cloud_monitoring/cloud_monitoring.html">OpenTelemetry Cloud Monitoring Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/cloud_trace/cloud_trace.html">OpenTelemetry Cloud Trace Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/datadog/datadog.html">OpenTelemetry Datadog Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/django/django.html">OpenTelemetry Django Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jinja2/jinja2.html">OpenTelemetry Jinja2 Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opencensusexporter/opencensusexporter.html">OpenCensus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/otlp/otlp.html">Opentelemetry OTLP Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymemcache/pymemcache.html">OpenTelemetry pymemcache Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymysql/pymysql.html">OpenTelemetry PyMySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pyramid/pyramid.html">OpenTelemetry Pyramid Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/redis/redis.html">OpenTelemetry Redis Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/requests/requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/sqlalchemy/sqlalchemy.html">OpenTelemetry SQLAlchemy Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/sqlite3/sqlite3.html">OpenTelemetry SQLite3 Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/starlette/starlette.html">OpenTelemetry Starlette Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/system_metrics/system_metrics.html">OpenTelemetry System Metrics Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../auto-instrumentation/README.html">Autoinstrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_monitoring/README.html">Cloud Monitoring Exporter Example</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cloud Trace Exporter Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-output">Checking Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#further-reading">Further Reading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#running-basic-trace-py-hangs">Running basic_trace.py hangs:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-error-google-api-core-exceptions-resourceexhausted-429-resource-has-been-exhausted">Getting error <code class="docutils literal notranslate"><span class="pre">google.api_core.exceptions.ResourceExhausted:</span> <span class="pre">429</span> <span class="pre">Resource</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">exhausted</span></code>:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bash-pip-command-not-found">bash: pip: command not found:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pip-install-is-hanging">pip install is hanging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#importerror-no-module-named-opentelemetry">ImportError: No module named opentelemetry</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../datadog_exporter/README.html">Datadog Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../django/README.html">OpenTelemetry Django Instrumentation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensus-exporter-metrics/README.html">OpenTelemetry Collector Metrics OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensus-exporter-tracer/README.html">OpenTelemetry Collector Tracer OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing/README.html">OpenTracing Shim Example</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Cloud Trace Exporter Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/cloud_trace_exporter/README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cloud-trace-exporter-example">
+<h1>Cloud Trace Exporter Example<a class="headerlink" href="#cloud-trace-exporter-example" title="Permalink to this headline">¶</a></h1>
+<p>These examples show how to use OpenTelemetry to send tracing data to Cloud Trace.</p>
+<div class="section" id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>To use this exporter you first need to:</dt><dd><ul class="simple">
+<li><p>A Google Cloud project. You can <a class="reference external" href="https://console.cloud.google.com/projectcreate">create one here</a>.</p></li>
+<li><p>Enable Cloud Trace API (listed in the Cloud Console as Stackdriver Trace API) in the project <a class="reference external" href="https://console.cloud.google.com/apis/library?q=cloud%20trace&amp;filter=visibility:public">here</a>.
+* If the page says “API Enabled” then you’re done! No need to do anything.</p></li>
+<li><p>Enable Default Application Credentials by creating setting <a class="reference external" href="https://cloud.google.com/docs/authentication/getting-started">GOOGLE_APPLICATION_CREDENTIALS</a> or by <a class="reference external" href="https://cloud.google.com/sdk/install">installing gcloud sdk</a> and calling <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">auth</span> <span class="pre">application-default</span> <span class="pre">login</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Installation</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+pip install opentelemetry-exporter-cloud-trace
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run an example locally</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.exporter.cloud_trace</span> <span class="kn">import</span> <span class="n">CloudTraceSpanExporter</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">SimpleExportSpanProcessor</span>
+
+<span class="n">trace</span><span class="o">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">TracerProvider</span><span class="p">())</span>
+
+<span class="n">cloud_trace_exporter</span> <span class="o">=</span> <span class="n">CloudTraceSpanExporter</span><span class="p">()</span>
+<span class="n">trace</span><span class="o">.</span><span class="n">get_tracer_provider</span><span class="p">()</span><span class="o">.</span><span class="n">add_span_processor</span><span class="p">(</span>
+    <span class="n">SimpleExportSpanProcessor</span><span class="p">(</span><span class="n">cloud_trace_exporter</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="o">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">tracer</span><span class="o">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="checking-output">
+<h2>Checking Output<a class="headerlink" href="#checking-output" title="Permalink to this headline">¶</a></h2>
+<p>After running any of these examples, you can go to <a class="reference external" href="https://console.cloud.google.com/traces/list">Cloud Trace overview</a> to see the results.</p>
+</div>
+<div class="section" id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://opentelemetry-python.readthedocs.io/en/stable/getting-started.html#configure-exporters-to-emit-spans-elsewhere">More information about exporters in general</a></p></li>
+</ul>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-basic-trace-py-hangs">
+<h3>Running basic_trace.py hangs:<a class="headerlink" href="#running-basic-trace-py-hangs" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Make sure you’ve setup Application Default Credentials. Either run <code class="docutils literal notranslate"><span class="pre">gcloud</span> <span class="pre">auth</span> <span class="pre">application-default</span> <span class="pre">login</span></code> or set the <code class="docutils literal notranslate"><span class="pre">GOOGLE_APPLICATION_CREDENTIALS</span></code> environment variable to be a path to a service account token file.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="getting-error-google-api-core-exceptions-resourceexhausted-429-resource-has-been-exhausted">
+<h3>Getting error <code class="docutils literal notranslate"><span class="pre">google.api_core.exceptions.ResourceExhausted:</span> <span class="pre">429</span> <span class="pre">Resource</span> <span class="pre">has</span> <span class="pre">been</span> <span class="pre">exhausted</span></code>:<a class="headerlink" href="#getting-error-google-api-core-exceptions-resourceexhausted-429-resource-has-been-exhausted" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Check that you’ve enabled the <a class="reference external" href="https://console.cloud.google.com/apis/library?q=cloud%20trace&amp;filter=visibility:public">Cloud Trace (Stackdriver Trace) API</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="bash-pip-command-not-found">
+<h3>bash: pip: command not found:<a class="headerlink" href="#bash-pip-command-not-found" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://cloud.google.com/python/setup#installing_python">Install pip</a></p></li>
+<li><p>If your machine uses python2 by default, pip will also be the python2 version. Try using <code class="docutils literal notranslate"><span class="pre">pip3</span></code> instead of <code class="docutils literal notranslate"><span class="pre">pip</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="pip-install-is-hanging">
+<h3>pip install is hanging<a class="headerlink" href="#pip-install-is-hanging" title="Permalink to this headline">¶</a></h3>
+<p>Try upgrading pip</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">grcpio</span></code> has been known to hang when you aren’t using an upgraded version.</p>
+</div>
+<div class="section" id="importerror-no-module-named-opentelemetry">
+<h3>ImportError: No module named opentelemetry<a class="headerlink" href="#importerror-no-module-named-opentelemetry" title="Permalink to this headline">¶</a></h3>
+<p>Make sure you are using python3. If</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python --version
+</pre></div>
+</div>
+<p>returns <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">2.X.X</span></code> try calling</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>python3 basic_trace.py
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../datadog_exporter/README.html" class="btn btn-neutral float-right" title="Datadog Exporter Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../cloud_monitoring/README.html" class="btn btn-neutral float-left" title="Cloud Monitoring Exporter Example" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

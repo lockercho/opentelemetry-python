@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Cloud Monitoring Exporter Example &mdash; OpenTelemetry Python  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cloud Trace Exporter Example" href="../cloud_trace_exporter/README.html" />
+    <link rel="prev" title="Basic Meter" href="../basic_meter/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> OpenTelemetry Python
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started.html">Getting Started with OpenTelemetry Python</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Python Packages</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/api.html">OpenTelemetry Python API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sdk/sdk.html">OpenTelemetry Python SDK</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../instrumentation/instrumentation.html">OpenTelemetry Python Instrumentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">OpenTelemetry Integrations</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/aiohttp_client/aiohttp_client.html">OpenTelemetry aiohttp client Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/asgi/asgi.html">opentelemetry.ext.asgi package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/asyncpg/asyncpg.html">opentelemetry.ext.asyncpg package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/boto/boto.html">OpenTelemetry Boto Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/botocore/botocore.html">OpenTelemetry Botocore Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/celery/celery.html">OpenTelemetry Celery Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/cloud_monitoring/cloud_monitoring.html">OpenTelemetry Cloud Monitoring Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/cloud_trace/cloud_trace.html">OpenTelemetry Cloud Trace Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/datadog/datadog.html">OpenTelemetry Datadog Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/dbapi/dbapi.html">OpenTelemetry Database API Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/django/django.html">OpenTelemetry Django Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/flask/flask.html">OpenTelemetry Flask Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/grpc/grpc.html">OpenTelemetry gRPC Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jaeger/jaeger.html">Opentelemetry Jaeger Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/jinja2/jinja2.html">OpenTelemetry Jinja2 Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/mysql/mysql.html">OpenTelemetry MySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opencensusexporter/opencensusexporter.html">OpenCensus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/opentracing_shim/opentracing_shim.html">OpenTracing Shim for OpenTelemetry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/otlp/otlp.html">Opentelemetry OTLP Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/prometheus/prometheus.html">OpenTelemetry Prometheus Exporter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/psycopg2/psycopg2.html">OpenTelemetry Psycopg Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymemcache/pymemcache.html">OpenTelemetry pymemcache Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymongo/pymongo.html">OpenTelemetry pymongo Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pymysql/pymysql.html">OpenTelemetry PyMySQL Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/pyramid/pyramid.html">OpenTelemetry Pyramid Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/redis/redis.html">OpenTelemetry Redis Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/requests/requests.html">OpenTelemetry requests Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/sqlalchemy/sqlalchemy.html">OpenTelemetry SQLAlchemy Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/sqlite3/sqlite3.html">OpenTelemetry SQLite3 Integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/starlette/starlette.html">OpenTelemetry Starlette Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/system_metrics/system_metrics.html">OpenTelemetry System Metrics Instrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/wsgi/wsgi.html">OpenTelemetry WSGI Middleware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ext/zipkin/zipkin.html">Opentelemetry Zipkin Exporter</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../auto-instrumentation/README.html">Autoinstrumentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../basic_meter/README.html">Basic Meter</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cloud Monitoring Exporter Example</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-example">Basic Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viewing-output">Viewing Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#one-or-more-points-were-written-more-frequently-than-the-maximum-sampling-period-configured-for-the-metric"><code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">or</span> <span class="pre">more</span> <span class="pre">points</span> <span class="pre">were</span> <span class="pre">written</span> <span class="pre">more</span> <span class="pre">frequently</span> <span class="pre">than</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">sampling</span> <span class="pre">period</span> <span class="pre">configured</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">metric</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cloud_trace_exporter/README.html">Cloud Trace Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../datadog_exporter/README.html">Datadog Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../django/README.html">OpenTelemetry Django Instrumentation Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensus-exporter-metrics/README.html">OpenTelemetry Collector Metrics OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opencensus-exporter-tracer/README.html">OpenTelemetry Collector Tracer OpenCensus Exporter Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentelemetry-example-app/README.html">OpenTelemetry Example Application</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../opentracing/README.html">OpenTracing Shim Example</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">OpenTelemetry Python</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Cloud Monitoring Exporter Example</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/examples/cloud_monitoring/README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="cloud-monitoring-exporter-example">
+<h1>Cloud Monitoring Exporter Example<a class="headerlink" href="#cloud-monitoring-exporter-example" title="Permalink to this headline">¶</a></h1>
+<p>These examples show how to use OpenTelemetry to send metrics data to Cloud Monitoring.</p>
+<div class="section" id="basic-example">
+<h2>Basic Example<a class="headerlink" href="#basic-example" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>To use this exporter you first need to:</dt><dd><ul class="simple">
+<li><p><a class="reference external" href="https://console.cloud.google.com/projectcreate">Create a Google Cloud project</a>.</p></li>
+<li><p>Enable the Cloud Monitoring API (aka Stackdriver Monitoring API) in the project <a class="reference external" href="https://console.cloud.google.com/apis/library?q=cloud_monitoring">here</a>.</p></li>
+<li><p>Enable <a class="reference external" href="https://developers.google.com/identity/protocols/application-default-credentials">Default Application Credentials</a>.</p></li>
+</ul>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Installation</p></li>
+</ul>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>pip install opentelemetry-api
+pip install opentelemetry-sdk
+pip install opentelemetry-exporter-cloud-monitoring
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Run example</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># Copyright The OpenTelemetry Authors</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">metrics</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.exporter.cloud_monitoring</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CloudMonitoringMetricsExporter</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.metrics</span> <span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">MeterProvider</span>
+
+<span class="n">metrics</span><span class="o">.</span><span class="n">set_meter_provider</span><span class="p">(</span><span class="n">MeterProvider</span><span class="p">())</span>
+<span class="n">meter</span> <span class="o">=</span> <span class="n">metrics</span><span class="o">.</span><span class="n">get_meter</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">metrics</span><span class="o">.</span><span class="n">get_meter_provider</span><span class="p">()</span><span class="o">.</span><span class="n">start_pipeline</span><span class="p">(</span>
+    <span class="n">meter</span><span class="p">,</span> <span class="n">CloudMonitoringMetricsExporter</span><span class="p">(),</span> <span class="mi">5</span>
+<span class="p">)</span>
+
+<span class="n">requests_counter</span> <span class="o">=</span> <span class="n">meter</span><span class="o">.</span><span class="n">create_metric</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;request_counter&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;number of requests&quot;</span><span class="p">,</span>
+    <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">value_type</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span>
+    <span class="n">metric_type</span><span class="o">=</span><span class="n">Counter</span><span class="p">,</span>
+    <span class="n">label_keys</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;environment&quot;</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="n">staging_labels</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="s2">&quot;staging&quot;</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+    <span class="n">requests_counter</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">staging_labels</span><span class="p">)</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="viewing-output">
+<h2>Viewing Output<a class="headerlink" href="#viewing-output" title="Permalink to this headline">¶</a></h2>
+<dl class="simple">
+<dt>After running the example:</dt><dd><ul class="simple">
+<li><p>Go to the <a class="reference external" href="https://console.cloud.google.com/monitoring/metrics-explorer">Cloud Monitoring Metrics Explorer page</a>.</p></li>
+<li><p>In “Find resource type and metric” enter “OpenTelemetry/request_counter”.</p></li>
+<li><p>You can filter by labels and change the graphical output here as well.</p></li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="one-or-more-points-were-written-more-frequently-than-the-maximum-sampling-period-configured-for-the-metric">
+<h3><code class="docutils literal notranslate"><span class="pre">One</span> <span class="pre">or</span> <span class="pre">more</span> <span class="pre">points</span> <span class="pre">were</span> <span class="pre">written</span> <span class="pre">more</span> <span class="pre">frequently</span> <span class="pre">than</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">sampling</span> <span class="pre">period</span> <span class="pre">configured</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">metric</span></code><a class="headerlink" href="#one-or-more-points-were-written-more-frequently-than-the-maximum-sampling-period-configured-for-the-metric" title="Permalink to this headline">¶</a></h3>
+<p>Currently, Cloud Monitoring allows one write every 10 seconds for any unique tuple (metric_name, metric_label_value_1, metric_label_value_2, …). The exporter should rate limit on its own but issues arise if:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>You are restarting the server more than once every 10 seconds.</p></li>
+<li><p>You have a multiple exporters (possibly on different threads) writing to the same tuple.</p></li>
+</ul>
+</div></blockquote>
+<p>For both cases, you can pass <code class="docutils literal notranslate"><span class="pre">add_unique_identifier=True</span></code> to the CloudMonitoringMetricsExporter constructor. This adds a UUID label_value, making the tuple unique again. For the first case, you can also choose to just wait longer than 10 seconds between restarts.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../cloud_trace_exporter/README.html" class="btn btn-neutral float-right" title="Cloud Trace Exporter Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../basic_meter/README.html" class="btn btn-neutral float-left" title="Basic Meter" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright OpenTelemetry Authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
